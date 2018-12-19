@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../resources/font-awesome-4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+	</head>
+
+	<body>
+		<!--头部导航开始-->
+		<header class="mui-bar mui-bar-nav bg-color">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" id="return-btn"></a>
+			<h1 class="mui-title">关键词搜索</h1>
+		</header>
+		<!--头部导航结束-->
+	</body>
+
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript">
+		/*mui初始 核心*/
+		mui.init()
+		/*获取当前页面的url地址*/
+		var url = location.search,
+			theRequest = new Object(),
+			/*接收的标志*/
+			remark;
+	
+		/*对url地址接取 操作 获取带过来的每一个参数*/
+		if(url.indexOf("?") != -1) {
+			/*substr()方法返回从参数值开始到结束的字符串；*/
+			var str = url.substr(1);
+			var strs = str.split("&");
+			for(var i = 0; i < strs.length; i++) {
+				theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+			}
+			remark = theRequest.remark;
+		}
+
+		/*根据标志  返回相应的跳转页面*/
+		document.getElementById("return-btn").onclick = function() {
+			window.location.href = remark;
+		}
+	</script>
+
+</html>

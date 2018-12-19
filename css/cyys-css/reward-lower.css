@@ -1,0 +1,128 @@
+/*定位图标*/
+
+.ic {
+	text-align: left;
+	font-size: 16px;
+	color: red;
+}
+
+
+/*区域内容*/
+
+.scroll_div {
+	margin: 0 auto;
+	white-space: nowrap;
+	height: 16px;
+	overflow: hidden;
+}
+
+
+/*区域结束*/
+
+#scroll_end {
+	display: inline;
+}
+
+
+/*条件筛选*/
+
+.sx-select {
+	text-align: center;
+	background-color: white;
+}
+
+.sx-seachicon {
+	margin-left: -5vw;
+	margin-top: 2vw;
+	color: darkblue;
+}
+
+.sx-icon {
+	margin: 2vw -4vw;
+	color: darkred;
+}
+
+.px {
+	margin-top: 1vh;
+}
+
+.px .px-leftdiv {
+	border-right: 1px solid darkslateblue;
+	border-radius: 10px;
+	height: 40px;
+}
+
+.px .px-rightdiv {
+	height: 40px;
+}
+
+.px-left {
+	padding-left: 25%;
+}
+
+.px-right {
+	padding-left: 18%;
+}
+
+.fa-caret-down {
+	position: absolute;
+	left: 70%;
+	top: 30%;
+	color: orangered;
+}
+
+.seach-incon {
+	background-color: white;
+	text-align: left;
+	height: 40px;
+	padding-top: 10px;
+}
+
+.seach-incon .fa {
+	color: #3697fe;
+}
+
+.mui-table-view:before {
+	position: fixed;
+	right: 0;
+	left: 0;
+	height: 1px;
+	content: '';
+	-webkit-transform: scaleY(.5);
+	transform: scaleY(.5);
+	background-color: #c8c7cc;
+	top: -1px;
+}
+
+.mui-table-view:after {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 1px;
+	content: '';
+	-webkit-transform: scaleY(.5);
+	transform: scaleY(.5);
+	background-color: #c8c7cc;
+}
+
+.reward-content ul li ul li {
+	padding: 0px;
+}
+
+.badge-b {
+	background-color: white;
+}
+
+.mui-table-view-cell>.mui-badge,
+.mui-table-view-cell>.mui-btn,
+.mui-table-view-cell>.mui-switch,
+.mui-table-view-cell>a>.mui-badge,
+.mui-table-view-cell>a>.mui-btn,
+.mui-table-view-cell>a>.mui-switch {
+	position: absolute;
+	top: 50%;
+	right: 0px;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}

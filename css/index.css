@@ -1,0 +1,92 @@
+/*通用样式*/
+
+
+/*body{
+	background-color: beige;
+}*/
+
+.pp-body {
+	margin: 15vh 8vw;
+}
+
+.pp-header {
+	text-align: center;
+	margin-top: 5vh;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+
+/* 指正常的未被访问过的链接*/
+
+a:visited {
+	text-decoration: none;
+}
+
+
+/*指已经访问过的链接*/
+
+a:hover {
+	text-decoration: none;
+}
+
+
+/*指鼠标在链接*/
+
+
+}
+a:active {
+	text-decoration: none;
+}
+a {
+	color: black;
+}
+
+/* 指正在点的链接*/
+.bg-color {
+	background-color: rgb(54, 151, 254);
+}
+.mui-title {
+	font-family: 黑体;
+	color: #fff;
+}
+.mui-slider {
+	height: 300px;
+}
+.mui-bar-nav~.mui-content {
+	margin-bottom: 55px;
+}
+.col-xs-1,
+.col-xs-10,
+.col-xs-11,
+.col-xs-12,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9 {
+	padding-right: 0;
+	padding-left: 0;
+}
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:focus,
+.nav-pills>li.active>a:hover {
+	color: #337ab7;
+	background-color: #f8f8f8;
+}
+.nav>li>a {
+	position: relative;
+	display: block;
+	padding: 8px 15px;
+}
+.nav-pills>li+li {
+	margin-left: 0px;
+}
+.footer .col-xs-3{
+	text-align: center;
+}

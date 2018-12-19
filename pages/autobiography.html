@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>嗨唱--个性化定制</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+
+		<style type="text/css">
+			@font-face {
+				font-family: 'iconfont';
+				src: url(../fonts/mui-icons-extra.ttf);
+			}
+			
+			body,.mui-scroll-wrapper {
+				font-family: 'iconfont';
+				background-color: white;
+			}
+			
+			header {
+				text-align: center;
+				margin-top: 10vh;
+			}
+			
+			header>p {
+				margin-top: 2vh;
+			}
+			
+			article {
+				margin-top: 10vh;
+				text-align: center;
+				margin-left: 10vw;
+			}
+		</style>
+	</head>
+
+	<body class="mui-content">
+		<header>
+			<h2>选择您喜欢的风格</h2>
+			<p>将帮助我们精准了解您的品味</p>
+		</header>
+
+		<article>
+			<div class="mui-row">
+				<div class="mui-col-xs-3 mui-checkbox">
+					<div style="height: 10vh;width:18vw;background-image: url(../images/style1.png);">
+						<input name="style" value="style1" type="checkbox" style="position: absolute;margin-top: 6.5vh;"/>
+					</div>
+				</div>
+				<div class="mui-col-xs-3 mui-checkbox">
+					<div style="height: 10vh;width:18vw;background-image: url(../images/style1.png);">
+						<input name="style" value="style1" type="checkbox" style="position: absolute;margin-top: 6.5vh;"/>
+					</div>
+				</div>
+				<div class="mui-col-xs-3 mui-checkbox">
+					<div style="height: 10vh;width:18vw;background-image: url(../images/style1.png);">
+						<input name="style" value="style1" type="checkbox" style="position: absolute;margin-top: 6.5vh;"/>
+					</div>
+				</div>
+			</div>
+		</article>
+	</body>
+
+	<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		/*初始化*/
+		mui.init();
+		/*涉及到h5+ 拓展api 都写在此方法中*/
+		mui.plusReady(function() {
+
+		});
+	</script>
+
+</html>

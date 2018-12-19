@@ -1,0 +1,76 @@
+/*头部图片*/
+.ship-header {
+	width: 100%;
+	height: 150px;
+	margin-bottom: 1vh;
+}
+/*邀请码*/
+.yq-qrcode{
+	margin: 1vh 2vw;
+}
+.yq-left{
+	float: left;
+}
+.yq-right{
+	text-align: right;
+}
+.tg-content{
+	margin-top: 2vh;
+}
+.yq-btn,.tg-btn{
+	width: 30vw;
+}
+/*邀请详情*/
+.my-yq{
+	margin-top: 1vh;
+	clear: both;
+}
+.my-yq .col-xs-6{
+	text-align: center;
+	margin-top: 2vh;
+}
+.yq-num{
+	color: orange;
+}
+/*排行榜*/
+.ph-detail{
+	margin: auto;
+	margin-top: 1vh;
+}
+.ph-detail .orders-img{
+	text-align: center;
+}
+.ph-detail .mui-card-content{
+	padding: 2vw;
+}
+.ph-detail .mui-card-header .order{
+	font-size: 13px;
+}
+.ph-detail .mui-card-header .order span{
+	color: orange;
+}
+.yq-main{
+	margin-left: 1vw;
+}
+.orders-img{
+	width: 30px;
+}
+.orders-header{
+	text-align: center;
+}
+/*金额 数字颜色*/
+.orders-one{
+	color: red;
+}
+.orders-two{
+	color: slateblue;
+}
+.orders-three{
+	color: deepskyblue;
+}
+.orders-last{
+	color: green;
+}
+.orders-header .col-xs-3{
+	margin-left: 3vw;
+}

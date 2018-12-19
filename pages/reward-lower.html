@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>帮帮--低价悬赏</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../resources/font-awesome-4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/cyys-css/reward-lower.css" />
+	</head>
+
+	<body>
+		<!--主体内容开始-->
+		<!--头部导航开始-->
+		<header class="mui-bar mui-bar-nav bg-color">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" id="return-btn"></a>
+			<h1 class="mui-title">低价悬赏</h1>
+		</header>
+		<!--头部导航结束-->
+		<!--content 部分开始-->
+		<div class="mui-content" id="content" style="">
+			<!--页面存储经度 纬度-->
+			<!--经度-->
+			<input type="hidden" name="longt" id="longt" value="" />
+			<!--纬度-->
+			<input type="hidden" name="lat" id="lat" value="" />
+			<!--个人定位信息开始-->
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right position-address" id="to-baiduposition">
+						<div class="mui-row">
+							<!--定位图标开始-->
+							<div class="mui-col-xs-1 ic">
+								<span class="fa fa-map-marker"></span>
+							</div>
+							<!--定位图标结束-->
+							<!--定位所在地名开始-->
+							<div class="mui-col-xs-10 scroll_div" id="scroll_div">
+								<div id="scroll_begin">
+									<span id="addressName">广东省广州市天河区迪宝大厦2楼207室</span>
+								</div>
+								<div class="mui-col-xs-12" id="scroll_end"></div>
+							</div>
+							<!--定位所在地名结束-->
+						</div>
+					</a>
+				</li>
+			</ul>
+			<!--个人信息定位结束-->
+			<!--条件筛选开始-->
+			<div class="mui-row px" id="px" style="">
+				<div class="mui-col-xs-6 px-leftdiv">
+					<select name="type" class="px-left" id="px-left" onchange="pxleft(this)">
+						<option value="0" class="test">全部类别</option>
+						<option value="1" class="test">简单转发</option>
+						<option value="2" class="test">简单关注</option>
+						<option value="3" class="test">简单注册</option>
+					</select>
+					<i class="fa fa-caret-down" style=""></i>
+				</div>
+				<div class="mui-col-xs-5 px-rightdiv" align="center">
+					<select name="paixu" class="px-right" id="px-right" onchange="pxright(this)">
+						<option value="">综合排序</option>
+						<option value="rewardDate">最新发布</option>
+						<option value="rewardMoney">价格最高</option>
+						<option value="rewardPlace">离我最近</option>
+					</select>
+					<i class="fa fa-caret-down" style=""></i>
+				</div>
+				<div class="mui-col-xs-1 seach-incon" id="seach-btn">
+					<span class="fa fa-search"></span>
+				</div>
+			</div>
+			<!--条件筛选结束-->
+			<!--内容展示开始-->
+			<div class="reward-content" id="reward-content">
+				<ul class="mui-table-view" v-for="content in contents">
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<!--用户头像开始-->
+							<img class="mui-media-object mui-pull-left" v-bind:src="content.img">
+							<!--用户头像结束-->
+							<div class="mui-media-body">
+								<ul class="mui-table-view">
+									<!--悬赏标题  悬赏金额结束-->
+									<li class="mui-table-view-cell">转发朋友圈第一条
+										<!--判定  根绝悬赏金额大小 赋予标签底色 开始-->
+										<span class="mui-badge badge-b" v-if="content.rewardMoney>=100">
+											<span class="mui-badge mui-badge-purple">￥{{content.rewardMoney}}</span>
+										</span>
+										<span class="mui-badge badge-b" v-else-if="content.rewardMoney>=50">
+											<span class="mui-badge mui-badge-danger">￥{{content.rewardMoney}}</span>
+										</span>
+										<span class="mui-badge badge-b" v-else>
+											<span class="mui-badge mui-badge-primary">￥{{content.rewardMoney}}</span>
+										</span>
+										<!--判定  根绝悬赏金额大小 赋予标签底色 结束-->
+									</li>
+									<!--悬赏标题 悬赏金额结束-->
+								</ul>
+								<p class='mui-ellipsis'>{{content.rewarded}}人已赚，还剩{{content.rewardSx}}个名额</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<!--内容展示结束-->
+		</div>
+		<!--content 部分结束-->
+		<!--主体内容结束-->
+	</body>
+
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/data.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		mui.init();
+		/*实现被隐藏的地名向左滚动*/
+		ScrollImgLeft();
+		//纬度
+		var lat,
+			//经度
+			longt,
+			//地址
+			address,
+			new_address,
+			new_lat,
+			new_lng;
+
+		var url = location.search;
+		var theRequest = new Object();
+		if(url.indexOf("?") != -1) {
+			/*substr()方法返回从参数值开始到结束的字符串；*/
+			var str = url.substr(1);
+			var strs = str.split("&");
+			for(var i = 0; i < strs.length; i++) {
+				theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+			}
+			new_address = theRequest.tAddress;
+			new_lat = theRequest.lat;
+			new_lng = theRequest.lng;
+		}
+
+		/*vue数据绑定*/
+		var rewardContent = new Vue({
+			el: '#reward-content',
+			data: {
+				contents: sourceData
+			}
+		});
+
+		var new_data = new Array();
+		/*选择类型*/
+		function pxleft(obj) {
+			var value = obj.options[obj.selectedIndex].value;
+			document.getElementById("px-right").value = "";
+			new_data = [];
+			if(value != 0) {
+				var j = 0;
+				for(var i = 0; i < sourceData.length; i++) {
+					if(sourceData[i].type == value) {
+						new_data[j] = sourceData[i];
+						j++;
+					}
+				}
+				rewardContent.contents = new_data;
+			} else {
+				rewardContent.contents = sourceData;
+			}
+			return new_data;
+		}
+		
+		/*排序*/
+		function pxright(obj) {
+			var value = obj.options[obj.selectedIndex].value;
+			var right_data = new Array();
+			if(new_data.length > 0) {
+				for(var i = 0; i < new_data.length; i++) {
+					right_data[i] = new_data[i];
+				}
+			} else {
+				for(var i = 0; i < sourceData.length; i++) {
+					right_data[i] = sourceData[i];
+				}
+			}
+			if(value != null && value != "") {
+				right_data.sort(compare(value));
+			}
+			rewardContent.contents = right_data;
+		}
+
+		/*返回悬赏页面*/
+		document.getElementById("return-btn").onclick = function() {
+			location.href = "f-reward.html";
+		}
+
+		/**
+		 * 去往百度地图定位.
+		 */
+		document.getElementById("to-baiduposition").onclick = function() {
+			lat = document.getElementById("lat").value;
+			lng = document.getElementById("longt").value;
+			location.href = "baidu-position.html?lat=" + lat + "&lng=" + lng;
+		}
+
+		/**
+		 * 去往搜索页面.
+		 */
+		document.getElementById("seach-btn").onclick = function() {
+			/*remark 标志，说明是lower跳转过去的页面*/
+			window.location.href = "seach.html?remark=reward-lower.html";
+		}
+
+		/**
+		 * plus相关操作.
+		 */
+		mui.plusReady(function() {
+			/*监听区域拖动事件  固定筛选头部*/
+			document.getElementById("reward-content").addEventListener("dragstart", function() {
+				document.getElementById("content").style.position = "relative";
+				document.getElementById("px").setAttribute("style", "position: fixed;z-index: 300;width: 100%;top: 38px;");
+			});
+			/*监听向下滑到底事件  还原样式*/
+			document.getElementById("reward-content").addEventListener("swipedown", function() {
+				document.getElementById("px").removeAttribute("style");
+			});
+			getPos();
+			getGeocode();
+		});
+
+		/**
+		 * 获取经纬度
+		 */
+		function getPos() {
+			plus.geolocation.getCurrentPosition(function(position) {
+				/*获取到当前位置的纬度；*/
+				lat = position.coords.latitude;
+				/*获取到当前位置的经度*/
+				longt = position.coords.longitude;
+				document.getElementById("longt").value = longt;
+				document.getElementById("lat").value = lat;
+			}, function(e) {
+				mui.alert("请先开启定位服务");
+			}, {
+				geocode: false
+			});
+			return lat;
+		}
+
+		/**
+		 * 通过定位模块获取位置信息
+		 */
+		function getGeocode() {
+			plus.geolocation.getCurrentPosition(function(position) {
+				address = position.addresses
+				if(typeof(new_address) == "undefined") {
+					document.getElementById("addressName").innerHTML = address;
+				} else {
+					document.getElementById("addressName").innerHTML = decodeURI(new_address);
+				}
+			}, function(e) {
+				document.getElementById("addressName").innerHTML = "获取定位位置信息失败,请先开启定位服务";
+			}, {
+				geocode: true
+			});
+		}
+
+		/**
+		 * 根据数组的某个元素进行排序
+		 */
+		function compare(property) {
+			return function(a, b) {
+				var value1 = a[property];
+				var value2 = b[property];
+				return value2 - value1;
+			}
+		}
+	</script>
+
+</html>

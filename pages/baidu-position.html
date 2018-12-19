@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<title>帮帮--手动定位</title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../resources/font-awesome-4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/cyys-css/position.css" />
+	</head>
+
+	<body>
+		<!--头部导航开始-->
+		<header class="mui-bar mui-bar-nav bg-color" id="return-btn">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">定位选择</h1>
+		</header>
+		<!--头部导航结束-->
+		<!--搜索框开始-->
+		<div class="row position-input">
+			<div class="col-xs-10 col-xs-offset-1">
+				<div class="input-group">
+					<input type="text" name="" id="suggestId" value="" placeholder="请输入您的位置..." style="background-color: #ececec;height: 38px;" class="form-control" />
+					<span class="input-group-btn">
+						<button id="ok-btn" class="btn btn-info" style="height: 38px;width: 30vw;"><span id="code-text">确定</span></button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+		<!--搜索框结束-->
+		<!--地图展示开始-->
+		<div id="allmap"></div>
+		<!--地图展示结束-->
+	</body>
+
+	<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--AK： nSxiPohfziUaCuONe4ViUP2N-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=nSxiPohfziUaCuONe4ViUP2N"></script>
+
+	<script type="text/javascript">
+		/*经纬度存放*/
+		var my_lat, my_lng;
+
+		/*接取url地址*/
+		var url = location.search;
+		var theRequest = new Object();
+		if(url.indexOf("?") != -1) {
+			var str = url.substr(1); //substr()方法返回从参数值开始到结束的字符串；
+			var strs = str.split("&");
+			for(var i = 0; i < strs.length; i++) {
+				theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+			}
+			my_lat = theRequest.lat;
+			my_lng = theRequest.lng;
+		}
+
+		// 百度地图API功能
+		function G(id) {
+			return document.getElementById(id);
+		}
+		/*初始化页面地图*/
+		var map = new BMap.Map("allmap");
+		map.centerAndZoom(new BMap.Point(my_lng,my_lat), 15);
+		var geoc = new BMap.Geocoder();
+		/*清除所有图标*/
+		map.clearOverlays();
+		map.centerAndZoom(new BMap.Point(my_lng,my_lat), 20);
+		/*引进图标*/
+		var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif", new BMap.Size(300, 157));
+		/*设置新的图标*/
+		var marker = new BMap.Marker(new BMap.Point(my_lng,my_lat), {
+			icon: myIcon
+		});
+		/*跳动的动画*/
+		marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+		/*添加标注*/
+		map.addOverlay(marker);
+		geoc.getLocation(new BMap.Point(my_lng,my_lat), function(rs) {
+			var addComp = rs.addressComponents;
+			var str = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber
+			document.getElementById("suggestId").value = str;
+		});
+
+		/*单击获取点击的经纬度*/
+		map.addEventListener("click", function(e) {
+			/*纬度*/
+			var lat = e.point.lat,
+				/*经度*/
+				lng = e.point.lng;
+			/*清除地图上所有覆盖物*/
+			map.clearOverlays();
+			map.centerAndZoom(new BMap.Point(lng, lat), 20);
+			/*引进图标*/
+			var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif", new BMap.Size(300, 157));
+			/*设置新的图标*/
+			var marker = new BMap.Marker(new BMap.Point(lng, lat), {
+				icon: myIcon
+			});
+			/*跳动的动画*/
+			marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+			/*添加标注*/
+			map.addOverlay(marker);
+			/*根据经纬度获取地标名*/
+			geoc.getLocation(e.point, function(rs) {
+				var addComp = rs.addressComponents;
+				var str = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber
+				document.getElementById("suggestId").value = str;
+			});
+			my_lat = lat;
+			my_lng = lng;
+		});
+
+		/*建立一个自动完成的对象  智能提示*/
+		var ac = new BMap.Autocomplete({
+			"input": "suggestId",
+			"location": map
+		});
+
+		/*鼠标放在下拉列表上的事件*/
+		ac.addEventListener("onhighlight", function(e) {
+			var str = "";
+			var _value = e.fromitem.value;
+			var value = "";
+			if(e.fromitem.index > -1) {
+				value = _value.province + _value.city + _value.district + _value.street + _value.business;
+			}
+			str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+			value = "";
+			if(e.toitem.index > -1) {
+				_value = e.toitem.value;
+				value = _value.province + _value.city + _value.district + _value.street + _value.business;
+			}
+			str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+			G("searchResultPanel").innerHTML = str;
+		});
+
+		/*鼠标点击下拉列表后的事件*/
+		var myValue;
+		ac.addEventListener("onconfirm", function(e) {
+			var _value = e.item.value;
+			myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+			G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+			setPlace();
+		});
+
+		/*画点*/
+		function setPlace() {
+			/*清除地图上所有覆盖物*/
+			map.clearOverlays();
+
+			function myFun() {
+				/*获取第一个智能搜索的结果*/
+				var pp = local.getResults().getPoi(0).point;
+				console.log("pp:" + pp);
+				map.centerAndZoom(pp, 20);
+				/*引进图标*/
+				var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif", new BMap.Size(300, 157));
+				/*设置新的图标*/
+				var marker = new BMap.Marker(pp, {
+					icon: myIcon
+				});
+				/*跳动的动画*/
+				marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+				/*添加标注*/
+				map.addOverlay(marker);
+				/*获取经纬度*/
+				my_lat = marker.getPosition().lat;
+				my_lng = marker.getPosition().lng;
+			}
+			/*智能搜索*/
+			var local = new BMap.LocalSearch(map, {
+				onSearchComplete: myFun
+			});
+			local.search(myValue);
+		}
+
+		/*返回定位选择*/
+		document.getElementById("return-btn").onclick = function() {
+			location.href = "reward-lower.html";
+		}
+
+		/*点击确定按钮*/
+		document.getElementById("ok-btn").onclick = function() {
+			var _input = encodeURI(document.getElementById("suggestId").value);
+			location.href = "reward-lower.html?lat=" + my_lat + "&lng=" + my_lng + "&tAddress=" + _input;
+		}
+	</script>
+
+</html>

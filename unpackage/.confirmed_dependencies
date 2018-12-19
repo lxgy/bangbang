@@ -1,0 +1,171 @@
+{
+	"index.html": {
+		"refer": [
+			"main.html",
+			"guide.html",
+			"account/login.html",
+			"test.html",
+			"pages/f-reward.html"
+		]
+	},
+	"guide.html": {
+		"refer": [
+			"main.html",
+			"login.html",
+			"account/login.html",
+			"pages/login.html"
+		]
+	},
+	"login.html": {
+		"refer": [
+			"regist.html"
+		]
+	},
+	"account/login.html": {
+		"resources": [
+			"/css/mui.min.css",
+			"/css/bootstrap.min.css"
+		],
+		"refer": [
+			"account/regist.html",
+			"account/find-password.html",
+			"main.html",
+			"test.html"
+		]
+	},
+	"account/regist.html": {
+		"refer": [
+			"account/autobiography.html",
+			"account/login.html"
+		]
+	},
+	"main.html": {
+		"resources": [
+			"1.html",
+			"pages/f-reward.html",
+			"pages/f-persional.html",
+			"pages/f-apprenticeship.html"
+		],
+		"refer": [
+			"2.html",
+			"1.html",
+			"3.html",
+			"5.html",
+			"4.html",
+			"pages/f-apprenticeship.html",
+			"pages/f-persional.html",
+			"pages/f-celebrity.html",
+			"pages/f-message.html",
+			"pages/f-reward.html",
+			"pages/login.html"
+		]
+	},
+	"test.html": {
+		"resources": [
+			"1.html"
+		],
+		"refer": [
+			"1.html",
+			"5.html",
+			"2.html",
+			"4.html",
+			"3.html"
+		]
+	},
+	"pages/login.html": {
+		"refer": [
+			"test.html",
+			"main.html",
+			"pages/find-password.html",
+			"pages/regist.html",
+			"pages/f-reward.html"
+		]
+	},
+	"pages/regist.html": {
+		"refer": [
+			"pages/login.html",
+			"pages/autobiography.html"
+		]
+	},
+	"pages/find-password.html": {
+		"refer": [
+			"pages/login.html"
+		]
+	},
+	"pages/f-reward.html": {
+		"refer": [
+			"pages/reward-lower.html",
+			"pages/reward-hight.html",
+			"pages/reward-survey.html",
+			"pages/f-message.html",
+			"pages/f-apprenticeship.html",
+			"pages/f-celebrity.html",
+			"pages/f-persional.html"
+		]
+	},
+	"pages/reward-lower.html": {
+		"refer": [
+			"pages/f-reward.html",
+			"pages/baidu-position.html",
+			"pages/seach.html"
+		]
+	},
+	"pages/reward-hight.html": {
+		"refer": [
+			"pages/f-reward.html"
+		]
+	},
+	"pages/persion-message.html": {
+		"refer": [
+			"pages/f-message.html"
+		]
+	},
+	"pages/f-message.html": {
+		"refer": [
+			"pages/persion-message.html",
+			"pages/f-reward.html",
+			"pages/f-persional.html",
+			"pages/f-apprenticeship.html",
+			"pages/f-celebrity.html"
+		]
+	},
+	"pages/reward-survey.html": {
+		"refer": [
+			"pages/f-reward.html"
+		]
+	},
+	"pages/f-apprenticeship.html": {
+		"refer": [
+			"pages/f-reward.html",
+			"pages/f-message.html",
+			"pages/f-celebrity.html",
+			"pages/f-persional.html"
+		]
+	},
+	"pages/f-celebrity.html": {
+		"refer": [
+			"pages/f-apprenticeship.html",
+			"pages/f-message.html",
+			"pages/f-reward.html",
+			"pages/f-persional.html"
+		]
+	},
+	"pages/f-persional.html": {
+		"refer": [
+			"pages/f-reward.html",
+			"pages/f-apprenticeship.html",
+			"pages/f-message.html",
+			"pages/f-celebrity.html"
+		]
+	},
+	"pages/baidu-position.html": {
+		"refer": [
+			"pages/reward-lower.html"
+		]
+	},
+	"pages/seach.html": {
+		"refer": [
+			"pages/reward-lower.html"
+		]
+	}
+}

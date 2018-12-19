@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>嗨唱--登录</title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background-color: white;
+			}
+			
+			.login-a {
+				color: #bcbcbc;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<!--<div class="mui-content mui-scroll-wrapper">
+				<div class="mui-scroll">-->
+			<!--头部登录标签开始-->
+			<header class="pp-header">
+				<img src="../images/logo.png" />
+			</header>
+			<!--头部登录标签结束-->
+			<!--登录表单内容开始-->
+			<article class="pp-body">
+				<div class="">
+					<span id="" style="color: #bcbcbc;font-size: 18px;">
+								派派账号登录
+							</span>
+				</div>
+				<!--表单开始-->
+				<form action="" method="post" role="form" style="margin-top: 10px;">
+					<!--用户名开始-->
+					<div class="form-group">
+						<input type="text" name="username" id="username" value="" placeholder="请输入手机号码..." class="form-control" style="background-color: #ececec;" />
+					</div>
+					<!--用户名结束-->
+					<!--密码开始-->
+					<div class="form-group">
+						<input type="password" name="password" id="password" value="" placeholder="请输入您的密码..." class="form-control" style="background-color: #ececec;" />
+					</div>
+					<!--密码结束-->
+					<!--登录按钮开始-->
+					<div class="form-group">
+						<button type="button" id="to-login" class="btn btn-info form-control" style="height: 45px;"><span>登录</span></button>
+					</div>
+					<!--登录按钮结束-->
+					<!--找回密码，注册开始-->
+					<div class="form-group">
+						<div class="mui-row">
+							<div class="mui-col-xs-6">
+								<a href="find-password.html" class="login-a btn-link" id="find-pwd">忘记密码？</a>
+							</div>
+							<div class="mui-col-xs-6" style="text-align: right;">
+								<a href="regist.html" class="login-a" id="to-regist">还未注册？去注册。</a>
+							</div>
+						</div>
+					</div>
+					<!--找回密码，注册结束-->
+				</form>
+				<!--表单结束-->
+			</article>
+			<!--登录表单内容结束-->
+			<!--</div>
+			</div>-->
+		</div>
+	</body>
+
+	<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/index.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		/*页面初始化*/
+		mui.init();
+
+		/*提交登录*/
+		document.getElementById("to-login").onclick = function() {
+			var username = document.getElementById("username").value,
+				password = document.getElementById("password").value;
+			//对数据封装
+			var data = {
+				"username": username,
+				"password": password
+			};
+			mui.alert("登录事件" + "用户名为：" + username + "密码为：" + password);
+			window.location.href = "f-reward.html";
+		}
+		
+	</script>
+
+</html>

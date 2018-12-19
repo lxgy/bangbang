@@ -1,0 +1,49 @@
+.mui-content>.mui-table-view:first-child {
+	margin-top: auto;
+}
+/*个人头像*/
+
+.myself {
+	text-align: center;
+}
+
+.myself-img {
+	width: 100px;
+	height: 100px;
+	border-radius: 110px;
+	border-bottom: solid 1px #008000;
+}
+.myself-info{
+	margin-top: 3vh;
+	text-align: center;
+}
+.detail{
+	color: orange;
+}
+.detail-d{
+	margin-top: 1vh;
+}
+.detail-red{
+	color: red;
+}
+.detail-success{
+	color: green;
+}
+.detail-darkmagenta{
+	color: darkmagenta;
+}
+.thend{
+	margin-top: 1vh;
+	text-align: center;
+}
+/*可提现金额*/
+.input-group{
+	margin-top: 1vh;
+}
+/*设置  发布*/
+.setting{
+	margin-top: 1vh;
+}
+.setting span{
+	margin-right: 1vw;
+}

@@ -1,0 +1,24 @@
+.mui-bar-tab .mui-tab-item .mui-icon~.mui-tab-label {
+	font-size: 2vh;
+	display: block;
+	text-overflow: ellipsis;
+	margin-bottom: 1vh;
+	overflow: visible;
+	margin-top: -1vh;
+}
+
+.mui-bar-tab .mui-tab-item .mui-icon {
+	width: 10vw;
+	height: 3vh;
+	top: -1vh;
+	padding-top: 0;
+	padding-bottom: 0;
+	text-align: center;
+	margin-top: 2vh;
+}
+
+.mui-bar .mui-icon {
+	font-size: 4vh;
+	position: relative;
+	z-index: 20;
+}

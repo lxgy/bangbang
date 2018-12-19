@@ -1,0 +1,25 @@
+.mui-card {
+	margin: auto;
+	margin-top: 1vh;
+}
+
+.mui-slider {
+	height: 200px;
+}
+
+.persion-img {
+	width: 100%;
+	height: 200px;
+}
+
+.mui-icon-chatbubble {
+	color: #007AFF;
+}
+.mui-card-footer a{
+	font-size: 15px;
+	margin: 1vw;
+}
+.mui-card-footer .fa{
+	margin-right: 3px;
+}
+

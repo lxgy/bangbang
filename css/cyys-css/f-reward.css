@@ -1,0 +1,84 @@
+.reward-nav {
+	text-align: center;
+	vertical-align: inherit;
+	margin-top: 1vh;
+	margin-bottom: 1vh;
+	background-color: white;
+}
+
+.reward-nav .mui-col-xs-4 {
+	float: left;
+	padding-top: 2vh;
+}
+
+.reward-nav .mui-col-xs-4 img {
+	border-radius: 40vw;
+	height: 40px;
+}
+
+.reward-navitem {
+	background-color: rgb(51, 143, 254);
+	border-radius: 20vw;
+	height: 26vw;
+	padding: 8vw;
+	margin: 3vw;
+}
+
+.mui-slider {
+	height: 200px;
+}
+
+.reward-active {
+	background: white;
+	margin-bottom: 2vw;
+	padding: 2vw;
+}
+
+.reward-activeleft {
+	text-align: center;
+}
+
+.reward-activerigth {
+	vertical-align: middle;
+}
+
+.mui-icon-help {
+	color: darkblue;
+}
+
+.takes-icon {
+	font-size: 35px;
+}
+
+.takes-detail {
+	margin-left: 3vw;
+}
+
+.mui-icon-minus {
+	color: #007AFF;
+	padding-left: 3vw;
+}
+
+.reward-font {
+	background-color: white;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.reward-font span {
+	font-family: "微软雅黑";
+	font-size: 20px;
+}
+
+.mui-row .mui-col-xs-2 {
+	text-align: center;
+}
+
+.t-font {
+	margin-top: 2vh;
+}
+
+.row {
+	margin-right: 0px;
+	margin-left: 0px
+}
